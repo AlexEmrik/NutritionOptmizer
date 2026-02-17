@@ -1,0 +1,98 @@
+[
+    {
+        "id": 2048,
+        "name": "Energy",
+        "unit": "kcal",
+        "category": "Macronutrient"
+    },
+    {
+        "id": 1003,
+        "name": "Protein",
+        "unit": "g",
+        "category": "Macronutrient"
+    },
+    {
+        "id": 1004,
+        "name": "Total lipid (fat)",
+        "unit": "g",
+        "category": "Macronutrient"
+    },
+    {
+        "id": 1005,
+        "name": "Carbohydrate, by difference",
+        "unit": "g",
+        "category": "Macronutrient"
+    },
+    {
+        "id": 1079,
+        "name": "Fiber, total dietary",
+        "unit": "g",
+        "category": "Macronutrient"
+    },
+    {
+        "id": 2000,
+        "name": "Sugars, total including NLEA",
+        "unit": "g",
+        "category": "Macronutrient"
+    },
+    {
+        "id": 1087,
+        "name": "Calcium, Ca",
+        "unit": "mg",
+        "category": "Mineral"
+    },
+    {
+        "id": 1089,
+        "name": "Iron, Fe",
+        "unit": "mg",
+        "category": "Mineral"
+    },
+    {
+        "id": 1090,
+        "name": "Magnesium, Mg",
+        "unit": "mg",
+        "category": "Mineral"
+    },
+    {
+        "id": 1092,
+        "name": "Potassium, K",
+        "unit": "mg",
+        "category": "Mineral"
+    },
+    {
+        "id": 1093,
+        "name": "Sodium, Na",
+        "unit": "mg",
+        "category": "Mineral"
+    },
+    {
+        "id": 1095,
+        "name": "Zinc, Zn",
+        "unit": "mg",
+        "category": "Mineral"
+    },
+    {
+        "id": 1162,
+        "name": "Vitamin C, total ascorbic acid",
+        "unit": "mg",
+        "category": "Vitamin"
+    },
+    {
+        "id": 1106,
+        "name": "Vitamin A, RAE",
+        "unit": "µg",
+        "category": "Vitamin"
+    },
+    {
+        "id": 1114,
+        "name": "Vitamin D (D2 + D3)",
+        "unit": "µg",
+        "category": "Vitamin"
+    },
+    {
+        "id": 1185,
+        "name": "Vitamin K (phylloquinone)",
+        "unit": "µg",
+        "category": "Vitamin"
+    }
+]

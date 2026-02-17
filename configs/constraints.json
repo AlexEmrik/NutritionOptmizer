@@ -1,0 +1,66 @@
+{
+    "Energy": {
+        "min": 1800,
+        "max": 2200
+    },
+    "Protein": {
+        "min": 50,
+        "max": 150
+    },
+    "Total lipid (fat)": {
+        "min": 40,
+        "max": 80
+    },
+    "Carbohydrate, by difference": {
+        "min": 200,
+        "max": 300
+    },
+    "Fiber, total dietary": {
+        "min": 25,
+        "max": 50
+    },
+    "Sugars, total including NLEA": {
+        "min": 0,
+        "max": 50
+    },
+    "Calcium, Ca": {
+        "min": 1000,
+        "max": 2500
+    },
+    "Iron, Fe": {
+        "min": 8,
+        "max": 45
+    },
+    "Magnesium, Mg": {
+        "min": 350,
+        "max": 700
+    },
+    "Potassium, K": {
+        "min": 3500,
+        "max": 4700
+    },
+    "Sodium, Na": {
+        "min": 0,
+        "max": 2300
+    },
+    "Zinc, Zn": {
+        "min": 11,
+        "max": 40
+    },
+    "Vitamin C, total ascorbic acid": {
+        "min": 90,
+        "max": 2000
+    },
+    "Vitamin A, RAE": {
+        "min": 900,
+        "max": 3000
+    },
+    "Vitamin D (D2 + D3)": {
+        "min": 15,
+        "max": 100
+    },
+    "Vitamin K (phylloquinone)": {
+        "min": 120,
+        "max": null
+    }
+}

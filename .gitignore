@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Data (downloaded via scripts)
+data/
+
+# Marimo session files
+notebooks/__marimo__/
+
+# OS
+.DS_Store

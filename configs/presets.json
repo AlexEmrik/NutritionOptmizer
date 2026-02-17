@@ -1,0 +1,15 @@
+{
+    "cut": {
+        "name": "Cut",
+        "constraints": {
+            "Energy": {
+                "min": 2000,
+                "max": 2200
+            },
+            "Protein": {
+                "min": 80,
+                "max": 120
+            }
+        }
+    }
+}
