@@ -22,10 +22,10 @@ def __():
 
 @app.cell
 def __(load_foods, build_daily_recommended, optimize, num_ingredients):
-    V = load_foods()
+    V = load_foods() 
     d = build_daily_recommended()
-    if num_ingredients.value == 3:
-        lam = 500
+    if num_ingredients.value == 3: # To be done 
+        lam = 4000000
     elif num_ingredients.value == 4:
         lam = 200
     elif num_ingredients.value == 5:
