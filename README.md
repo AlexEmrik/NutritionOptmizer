@@ -4,6 +4,18 @@ An idea spawned from a question that was asked while eating lunch outside of Pac
 
 A simple, interactive nutrition optimizer using **CVXPY** and **Marimo**.
 
+The data is modeled as follows:
+
+$$V \in \mathbb{R}^{m \times n}, \quad d \in \mathbb{R}^{m}, \quad x \in \mathbb{R}^{n}$$
+
+Where $V$ is the matrix of foods and their nutritional values, $d$ is the vector of daily recommended nutritional values, and $x$ is the vector of the amount of each food to consume. $n$ is the number of foods and $m$ is the number of nutritional values.
+
+$$\min_{x} \|Vx - d\|_2 + \lambda \|x\|_1$$
+
+$$\text{subject to} \quad x \geq 0$$
+
+We minimize the error of the current weights and our nutritional needs and $\lambda$ is used as a convex relaxation of cardinality. The larger $\lambda$ is, the more sparse the solution will be.
+
 --- 
 
 ## Data
@@ -20,7 +32,7 @@ Datasets are not tracked on Git.
 2. Run `scripts/1_dl_data.py` once to download or setup all the necessary data.
 3. Run `scripts/2_clean_data.py` once to process the raw data into `clean_foods.parquet`.
 4. Run `marimo edit notebooks/notebook.py` to launch the interactive optimizer.
-    1. This will open a browser window with the UI where you can set constraints and generate diets.
+    1. This will open a browser window with the UI where you can set the amount of foods you want your diet to consist of and the optimizer will find the best combination of foods to meet your daily nutritional needs and show it in a table.
 
 ## Project Structure
 
@@ -34,10 +46,6 @@ Datasets are not tracked on Git.
 ├── scripts/
 │   ├── 1_dl_data.py             # Download/Setup raw USDA data
 │   └── 2_clean_data.py          # Process raw CSVs into clean_foods.parquet
-├── configs/
-│   ├── nutrients.json           # Nutrient definitions
-│   ├── constraints.json         # Default min/max bounds
-│   └── presets.json             # Bulk/Cut etc.
 ├── data/                        # Data directory
 │   ├── raw/                     # Raw CSVs from USDA
 │   └── processed/               # Cleaned data for the app

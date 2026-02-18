@@ -55,7 +55,7 @@ def optimize(V, d, lam):
     # L2 norm for accuracy, L1 norm for sparsity
     objective = cp.Minimize(cp.norm(V.values.T @ x - d, 2) + lam * cp.norm(x, 1))
     # Constraints: non-negative, max 500 grams
-    constraints = [x >= 0, x <= 5]
+    constraints = [x >= 0]
     problem = cp.Problem(objective, constraints)
     problem.solve()
     return x.value
