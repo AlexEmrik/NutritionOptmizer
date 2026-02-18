@@ -10,7 +10,7 @@ $$V \in \mathbb{R}^{m \times n}, \quad d \in \mathbb{R}^{m}, \quad x \in \mathbb
 
 Where $V$ is the matrix of foods and their nutritional values, $d$ is the vector of daily recommended nutritional values, and $x$ is the vector of the amount of each food to consume. $n$ is the number of foods and $m$ is the number of nutritional values.
 
-$$\min_{x} \sum_{i} L_{\tau_i}(V_i x - d_i) + \lambda \|x\|_1$$
+$$\min_{} \sum_{i} L_{\tau_i}(V_i x - d_i) + \lambda \|x\|_1$$
 
 $$\text{subject to} \quad x \geq 0$$
 
