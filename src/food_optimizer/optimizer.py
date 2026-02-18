@@ -1,6 +1,6 @@
 import cvxpy as cp
-import numpy as np
 import pandas as pd
+import numpy as np
 import os
 
 def load_foods():
@@ -8,53 +8,64 @@ def load_foods():
     parquet_path = os.path.join(base, '..', '..', 'data', 'processed', 'clean_foods.parquet')
     foods = pd.read_parquet(parquet_path)
     foods = foods.set_index('description')
-    foods = foods.drop(columns=['fdc_id', 'Energy'])
-    foods = foods.rename(columns={'Calcium, Ca': 'Calcium', 'Carbohydrate, by difference': 'Carbs', 'Fiber, total dietary':'Fiber','Iron, Fe':'Iron', 'Magnesium, Mg': 'Magnesium', 'Potassium, K': 'Potassium', 'Sodium, Na': 'Salt', 'Sugars, total including NLEA': 'Sugars', 'Total lipid (fat)': 'Fats', 'Vitamin A, RAE': 'Vitamin A', 'Vitamin C, total ascorbic acid': 'Vitamin C', 'Vitamin D (D2 + D3)': 'Vitamin D', 'Vitamin K (phylloquinone)':'Vitamin K', 'Zinc, Zn': 'Zinc'})
+    foods = foods.drop(columns=['fdc_id'])
     return foods
 
-# Daily Value of nutritions based on https://www.fda.gov/food/nutrition-facts-label/daily-value-nutrition-and-supplement-facts-labels
 def build_daily_recommended():
     return pd.Series([
-        1300.0,   # Calcium (mg)
+        78.0,     # Fats (g)
+        20.0,     # Saturated Fat (g)
+        300.0,    # Cholesterol (mg)
         275.0,    # Carbs (g)
         28.0,     # Fiber (g)
-        18.0,     # Iron (mg)
-        420.0,    # Magnesium (mg)
-        4700.0,   # Potassium (mg)
         50.0,     # Protein (g)
-        2300.0,   # Salt == Sodium (mg)
         50.0,     # Sugars (g)
-        78.0,     # Fats (g)
-        900.0,    # Vitamin A (µg RAE)
+        5000.0,   # Vitamin A (IU)
         90.0,     # Vitamin C (mg)
         20.0,     # Vitamin D (µg)
-        120.0,    # Vitamin K (µg)
-        11.0      # Zinc (mg)
+        2.0,      # Vitamin B6 (mg)
+        6.0,      # Vitamin B12 (µg)
+        1300.0,   # Calcium (mg)
+        18.0,     # Iron (mg)
+        420.0,    # Magnesium (mg)
     ],
     index=[
-        "Calcium",
-        "Carbs",
-        "Fiber",
-        "Iron",
-        "Magnesium",
-        "Potassium",
-        "Protein",
-        "Salt",
-        "Sugars",
-        "Fats",
-        "Vitamin A",
-        "Vitamin C",
-        "Vitamin D",
-        "Vitamin K",
-        "Zinc"
+        "Fats", "Saturated Fat", "Cholesterol", "Carbs", "Fiber",
+        "Protein", "Sugars", "Vitamin A", "Vitamin C", "Vitamin D",
+        "Vitamin B6", "Vitamin B12", "Calcium", "Iron", "Magnesium",
     ])
+taus = np.array([
+    0.8,   # Fats
+    0.3,   # Saturated Fat
+    0.8,   # Cholesterol
+    0.5,   # Carbs
+    0.5,   # Fiber
+    0.8,   # Protein
+    0.2,   # Sugars 
+    0.5,   # Vitamin A
+    0.5,   # Vitamin C
+    0.5,   # Vitamin D
+    0.5,   # Vitamin B6
+    0.5,   # Vitamin B12
+    0.5,   # Calcium
+    0.5,   # Iron
+    0.5,   # Magnesium
+])
+
+def pinball(r, taus):
+    return cp.sum(cp.multiply(taus, cp.pos(r)) + cp.multiply(1 - taus, cp.neg(r)))
 
 def optimize(V, d, lam):
     n = len(V)
     x = cp.Variable(n)
-    # L2 norm for accuracy, L1 norm for sparsity
-    objective = cp.Minimize(cp.sum_squares(V.values.T @ x - d) + lam * cp.norm(x, 1))
-    constraints = [x >= 0]
+    residual = V.values.T @ x - d
+    objective = cp.Minimize(pinball(residual, taus) + lam * cp.norm(x, 1))
+    constraints = [
+        x >= 0,
+        #V['Sugars'].values @ x <= 0.5,
+       # V['Saturated Fat'].values @ x <= 0.2,
+        #V['Cholesterol'].values @ x <= 3
+    ]
     problem = cp.Problem(objective, constraints)
     problem.solve()
     return x.value
