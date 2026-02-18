@@ -6,6 +6,7 @@ __pycache__/
 
 # Data (downloaded via scripts)
 data/
+sandbox.ipynb
 
 # Marimo session files
 notebooks/__marimo__/
